@@ -13,7 +13,7 @@ function getIngrediets(recipes){
 }
 getIngrediets(app.loadFile())*/
 //och bin ein kommentar
-var vue = new Vue({
+const vue = new Vue({
     el: '#app',
     data: {
         rotate: false,
