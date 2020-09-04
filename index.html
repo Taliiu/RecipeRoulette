@@ -7,90 +7,108 @@
 		<link rel="stylesheet" href="style.css" />
 		<script src="./libs/vue.js"></script>
 	</head>
-	<body>
+	<body class="text-gray-800">
 		<!--A10,10 0 0,1 45,125 -->
 		<div id="app">
-			<div class="flex justify-center flax-wrap">
-				<div class="w-2/5">
-					<svg :class="{rotate: rotate}" class="ml-40" width="250" height="250">
-						<path
-							d="M68.43, 181.567 L125, 125 L125, 205
-                        Q89,204 68.43,181.567"
-							style="stroke: black; stroke-width: 3; fill: red;"
-						/>
-						<path
-							d="M45, 125 L125, 125 L68.43, 181.567
-                        Q48,165 45,125"
-							style="stroke: black; stroke-width: 3; fill: green;"
-						/>
-						<path
-							d="M68.43, 68.43 L125, 125 L45, 125
-                        Q46,90 68.43,68.43"
-							style="stroke: black; stroke-width: 3; fill: red;"
-						/>
-						<path
-							d="M125, 45 L125, 125 L68.43, 68.43
-                        Q86,48 125,45"
-							style="stroke: black; stroke-width: 3; fill: green;"
-						/>
-						<path
-							d="M181.567, 68.43 L125, 125 L125, 45
-                        Q162,46 181.567,68.43"
-							style="stroke: black; stroke-width: 3; fill: red;"
-						/>
-						<path
-							d="M205, 125 L125, 125 L181.567, 68.43
-                        Q200,83 205,125"
-							style="stroke: black; stroke-width: 3; fill: green;"
-						/>
-						<path
-							d="M181.567, 181.567 L125, 125 L205, 125
-                        Q206,155 181.567,181.567"
-							style="stroke: black; stroke-width: 3; fill: red;"
-						/>
-						<path
-							d="M125, 205 L125, 125 L181.567, 181.567
-                        Q157,206 125, 205"
-							style="stroke: black; stroke-width: 3; fill: green;"
-						/>
-						<circle
-							r="80"
-							cx="125"
-							cy="125"
-							fill="none"
-							stroke="black"
-							stroke-width="4px"
-						/>
-						<circle r="6" cx="125" cy="125" />
-					</svg>
-
+			<div class="flex justify-center flex-wrap">
+				<div v-if="!start" class="flex justify-center content-center flex-wrap w-full h-screen bg-gray-100">
+					<div class="w-1/2 h-auto flex justify-center flex-wrap bg-gray-500 rounded p-4">
+						<h1 class="text-bold text-3xl">Danke für deine Hilfe gestern ^^ </h1><br/><br/>
+						<p class="text-semibold text-lg">Hope you're having a nice day :))</p><br/><br/>
+						<p class="text-semibold text-lg">Ich weiß leider nicht ganz wie ich alternating list colors implementieren kann...I tried :((</p><br>
+						<p class="text-sm">P.S. Dank dem SVG weiß ich wieder wie man Punkte mithilfe von sin/cos, winkel und radius auf nem Kreis ausrechen kann haha</p>
+						<p class="text-sm">P.P.S. Warte 30sec dann kommst du zum Wheel</p>
+					</div>
+				</div>
+				<div v-else class="w-2/5">
+					<div class="flex justify-center">
+						<svg :class="{rotate: rotate}" width="250" height="250">
+							<path
+								d="M68.43, 181.567 L125, 125 L125, 205
+							Q89,204 68.43,181.567"
+								style="stroke:  #2d3748;; stroke-width: 3; fill:#FFB6FC"
+							/>
+							<path
+								d="M45, 125 L125, 125 L68.43, 181.567
+							Q48,165 45,125"
+								style="stroke:  #2d3748;; stroke-width: 3; fill:#B6FFF1"
+							/>
+							<path
+								d="M68.43, 68.43 L125, 125 L45, 125
+							Q46,90 68.43,68.43"
+								style="stroke:  #2d3748;; stroke-width: 3; fill:#FFB6FC"
+							/>
+							<path
+								d="M125, 45 L125, 125 L68.43, 68.43
+							Q86,48 125,45"
+								style="stroke:  #2d3748;; stroke-width: 3; fill: #B6FFF1"
+							/>
+							<path
+								d="M181.567, 68.43 L125, 125 L125, 45
+							Q162,46 181.567,68.43"
+								style="stroke:  #2d3748;; stroke-width: 3; fill: #FFB6FC"
+							/>
+							<path
+								d="M205, 125 L125, 125 L181.567, 68.43
+							Q200,83 205,125"
+								style="stroke:  #2d3748;; stroke-width: 3; fill: #B6FFF1"
+							/>
+							<path
+								d="M181.567, 181.567 L125, 125 L205, 125
+							Q206,155 181.567,181.567"
+								style="stroke:  #2d3748;; stroke-width: 3; fill: #FFB6FC"
+							/>
+							<path
+								d="M125, 205 L125, 125 L181.567, 181.567
+							Q157,206 125, 205"
+								style="stroke:  #2d3748;; stroke-width: 3; fill: #B6FFF1"
+							/>
+							<circle
+								r="80"
+								cx="125"
+								cy="125"
+								fill="none"
+								stroke="#2d3748"
+								stroke-width="4px"
+							/>
+							<circle r="6" cx="125" cy="125" fill="#2d3748"/>
+						</svg>
+					</div>
 					<button
 						@click="rotate = true; getContent(); addCounter(); "
-						class="w-11/12 border-2 border-black rounded p-2 bg-green-700 shadow-md text-white"
+						class="w-11/12 rounded md:p-2 p-1 bg-mint shadow-md"
 					>
 						Spin the wheel
 					</button>
+					<div class="w-11/12 p-1">
+						<h1 class="mt-5 text-xl font-bold ">{{recipename}}</h1>
+						<div>{{servings}}</div>
+					</div>
 					<div class="flex w-11/12">
 						<button
-							@click="showIngredients = true"
-							class="w-1/2 border-2 border-black rounded p-3 shadow-md bg-blue-300 mt-5"
-						>
-							Ingredients
-						</button>
-						<button
-							@click="showIngredients = false; "
-							class="w-1/2 border-2 border-black rounded p-3 shadow-md bg-blue-300 ml-3 mt-5"
-						>
-							Method
+								@click="showIngredients = true; attachRed = true"
+								:class="{purple: attachRed}" class="w-1/2 rounded md:p-3 p-1 shadow-md bg-gray-light mt-2"
+							>
+								Ingredients
+							</button>
+							<button
+								@click="showIngredients = false; attachRed = false"
+								:class="{purple: !attachRed}" class="w-1/2 rounded md:p-3 p-1 shadow-md bg-gray-light ml-3 mt-2"
+							>
+								Method
 						</button>
 					</div>
-					<div v-show="showIngredients">
-						<ul v-for="ingredient in specifiedIngredients">
-							<li style="border: solid 2px black;">{{ingredient}}</li>
+					<div v-show="showIngredients" class="w-11/12 mt-4">
+						<ul v-for="(ingredient, index) in specifiedIngredients" class="rounded bg-gray-light">
+							<li v-if="index % 2 == 0" class="bg-gray-light rounded p-2">{{ingredient}}</li>
+							<li v-if="index % 2 != 0" class="bg-gray-lighter rounded p-2">{{ingredient}}</li>
 						</ul>
 					</div>
-					<div v-show="!showIngredients">
-						<div>{{specifiedMethod}}</div>
+					<div v-show="!showIngredients" class="w-11/12 mt-4">
+						<ul v-for="(instruction, index) in specifiedInstructions" class="rounded bg-gray-light">
+							<li v-if="index % 2 == 0" class="bg-gray-light rounded p-2">{{instruction}}</li>
+							<li v-if="index % 2 != 0" class="bg-gray-lighter rounded p-2">{{instruction}}</li>
+						</ul>
 					</div>
 				</div>
 			</div>
