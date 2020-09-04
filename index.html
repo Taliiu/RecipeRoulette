@@ -11,15 +11,7 @@
 		<!--A10,10 0 0,1 45,125 -->
 		<div id="app">
 			<div class="flex justify-center flex-wrap">
-				<div v-if="!start" class="flex justify-center content-center flex-wrap w-full h-screen bg-gray-100">
-					<div class="w-1/2 h-auto flex justify-center flex-wrap bg-gray-500 rounded p-4">
-						<h1 class="text-bold text-3xl">Danke für deine Hilfe gestern ^^ </h1><br/><br/>
-						<p class="text-semibold text-lg">Hope you're having a nice day :))</p><br/><br/>
-						<p class="text-semibold text-lg">Ich weiß leider nicht ganz wie ich alternating list colors implementieren kann...I tried :((</p><br>
-						<p class="text-sm">P.S. Dank dem SVG weiß ich wieder wie man Punkte mithilfe von sin/cos, winkel und radius auf nem Kreis ausrechen kann haha</p>
-						<p class="text-sm">P.P.S. Warte 30sec dann kommst du zum Wheel</p>
-					</div>
-				</div>
+				
 				<div v-else class="w-2/5">
 					<div class="flex justify-center">
 						<svg :class="{rotate: rotate}" width="250" height="250">
