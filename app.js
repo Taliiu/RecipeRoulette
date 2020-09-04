@@ -1,107 +1,68 @@
-var fs = require('fs');
+/*const app = require('./app.js')
+//console.log(app.loadFile())
 
-var newrecipes = [{
-    id: '1',
-    https: 'https://somedomainname',
-    name: 'name',
-    categories: ['vegan', 'healthy'],
-    content: {
-        ingredients: ['some', 'more', 'ingredients'],
-        method: 'Some Text'
-    }
-},
-{    
-    id: '2',
-    https: 'https://anotherdomainname',
-    name: 'name2',
-    categories: ['healthy', 'vegan'],
-    content: {
-        ingredients: ['some', 'more', 'ingredients'],
-        method: 'Some Other Text'
-    }
-},
-{    
-    id: '3',
-    https: 'https://another2domainname',
-    name: 'name3',
-    categories: ['healthy', 'vegan'],
-    content: {
-        ingredients: ['some', 'more', 'ingredients'],
-        method: 'Some More Text'
-    }
-}];
 
-//var data = JSON.stringify(myrecipes);
+const allRecipeIngredients = []
 
-function writeFile(data) {
-    const newObj = data.concat(newrecipes)
-    const newObjstr = JSON.stringify(newObj);
-    fs.writeFile('./config.json', newObjstr, function(err){
-        if (err) {
-            console.log('There has been an error saving your config');
-            console.log('err.message');
-            return;
-        }
-        console.log('configuration saved succesfully')
+function getIngrediets(recipes){
+    recipes.forEach(element => {
+        allRecipeIngredients.push(element.content.ingredients);
+        console.log(allRecipeIngredients)
+        return;
     });
-
 }
+getIngrediets(app.loadFile())*/
 
-function loadFile() {
-    const file = fs.readFileSync('./config.json');
-    try {
-        dataObj = JSON.parse(file);
-        return dataObj;
-    }
-    catch (err) {
-        console.log('there has been an error parsing your json')
-        console.log(err)
-    }
-}
-function getRandomIndex() {
-    const index = Math.floor(Math.random() * 3);
-    return index;
-}
+//import recipes from "./recipes.json";
 
-function getUserInput(name){
-    return name;
-}
-
-
-/*function deleteObj(data) {
-    data.findIndex((currentValue, index, arr) => {
-        const userInput = getUserInput('name2');
-
-        const name = currentValue.name ///whyyyy is currentValue undefined??
-        if( userInput == name) {
-            data.splice(index,1)
-            const newObjstr = JSON.stringify(data);
-            fs.writeFile('library.json', newObjstr, (err) => {
-                if (err) {
-                    console.log('There has been an error saving your config');
-                    console.log('err.message');
-                    return;
-                }
-                console.log('configuration saved succesfully')
-            })
-        }
-        else {
-            console.log('name doesnt match')
-        }
-        /*console.log('id ' + currentValue.name);
-        console.log('index: ' + index);
-        console.log('arr: ' + arr);
-    })
-}*/
-
-
-const data = loadFile()
-//deleteObj(data)
-//writeFile(data);
-
-
-
-//const index  = getRandomIndex()
-//console.log(index)
-//console.log(dataObj[0].name) 
-
+const vue = new Vue({
+	el: "#app",
+	data: {
+		rotate: false,
+		showIngredients: true,
+		ingredients: [
+			["some", "more", "ingredients"],
+			["other", "ingredients"],
+			["zaza", "yaay", "lol"]
+		],
+		methods: [
+			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque voluptatem maiores architecto quos illo ipsum perspiciatis quis, nesciunt tempora provident iste consequuntur mollitia? Quidem asperiores maiores ipsam temporibus expedita doloribus.",
+			"Some Other text",
+			"text3"
+		],
+		specifiedIngredients: [],
+		specifiedMethod: "",
+		spinCounter: 0
+	},
+	watch: {
+		spinCounter: function (value) {
+			const vm = this;
+			if (value == 1) {
+				vm.rotate = false;
+				vm.spinCounter = 0;
+			}
+		}
+	},
+	methods: {
+		getIndex: function () {
+			return Math.floor(Math.random() * 3);
+		},
+		getContent: function () {
+			this.specifiedIngredients = [];
+			this.specifiedMethod = "";
+			console.log(this.specifiedIngredients);
+			const index = this.getIndex();
+			this.specifiedIngredients = this.specifiedIngredients.concat(
+				this.ingredients[index]
+			);
+			this.specifiedMethod = this.specifiedMethod.concat(this.methods[index]);
+		},
+		addCounter: function () {
+			const vm = this;
+			setTimeout(function () {
+				vm.spinCounter += 1;
+				console.log(vm.spinCounter);
+			}, 1000);
+		}
+	}
+});
