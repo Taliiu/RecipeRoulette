@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
+		<script src="./libs/vue.js"></script>
+	</head>
+	<body>
+		<!--A10,10 0 0,1 45,125 -->
+		<div id="app">
+			<div class="flex justify-center flax-wrap">
+				<div class="w-2/5">
+					<svg :class="{rotate: rotate}" class="ml-40" width="250" height="250">
+						<path
+							d="M68.43, 181.567 L125, 125 L125, 205
+                        Q89,204 68.43,181.567"
+							style="stroke: black; stroke-width: 3; fill: red;"
+						/>
+						<path
+							d="M45, 125 L125, 125 L68.43, 181.567
+                        Q48,165 45,125"
+							style="stroke: black; stroke-width: 3; fill: green;"
+						/>
+						<path
+							d="M68.43, 68.43 L125, 125 L45, 125
+                        Q46,90 68.43,68.43"
+							style="stroke: black; stroke-width: 3; fill: red;"
+						/>
+						<path
+							d="M125, 45 L125, 125 L68.43, 68.43
+                        Q86,48 125,45"
+							style="stroke: black; stroke-width: 3; fill: green;"
+						/>
+						<path
+							d="M181.567, 68.43 L125, 125 L125, 45
+                        Q162,46 181.567,68.43"
+							style="stroke: black; stroke-width: 3; fill: red;"
+						/>
+						<path
+							d="M205, 125 L125, 125 L181.567, 68.43
+                        Q200,83 205,125"
+							style="stroke: black; stroke-width: 3; fill: green;"
+						/>
+						<path
+							d="M181.567, 181.567 L125, 125 L205, 125
+                        Q206,155 181.567,181.567"
+							style="stroke: black; stroke-width: 3; fill: red;"
+						/>
+						<path
+							d="M125, 205 L125, 125 L181.567, 181.567
+                        Q157,206 125, 205"
+							style="stroke: black; stroke-width: 3; fill: green;"
+						/>
+						<circle
+							r="80"
+							cx="125"
+							cy="125"
+							fill="none"
+							stroke="black"
+							stroke-width="4px"
+						/>
+						<circle r="6" cx="125" cy="125" />
+					</svg>
+
+					<button
+						@click="rotate = true; getContent(); addCounter(); "
+						class="w-11/12 border-2 border-black rounded p-2 bg-green-700 shadow-md text-white"
+					>
+						Spin the wheel
+					</button>
+					<div class="flex w-11/12">
+						<button
+							@click="showIngredients = true"
+							class="w-1/2 border-2 border-black rounded p-3 shadow-md bg-blue-300 mt-5"
+						>
+							Ingredients
+						</button>
+						<button
+							@click="showIngredients = false; "
+							class="w-1/2 border-2 border-black rounded p-3 shadow-md bg-blue-300 ml-3 mt-5"
+						>
+							Method
+						</button>
+					</div>
+					<div v-show="showIngredients">
+						<ul v-for="ingredient in specifiedIngredients">
+							<li style="border: solid 2px black;">{{ingredient}}</li>
+						</ul>
+					</div>
+					<div v-show="!showIngredients">
+						<div>{{specifiedMethod}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="./recipes.js"></script>
+		<script src="./app.js"></script>
+	</body>
+</html>
