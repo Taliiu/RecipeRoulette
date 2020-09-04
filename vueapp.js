@@ -12,6 +12,7 @@ function getIngrediets(recipes){
     });
 }
 getIngrediets(app.loadFile())*/
+//och bin ein kommentar
 var vue = new Vue({
     el: '#app',
     data: {
