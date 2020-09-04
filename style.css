@@ -22215,6 +22215,34 @@ video {
           animation: bounce 1s infinite;
 }
 
+.red {
+  background-color: red;
+}
+
+.bg-gray-light {
+  background: #e9e9e9;
+}
+
+.bg-mint {
+  background: #B6FFF1;
+}
+
+.purple {
+  background: #FFB6FC;
+}
+
+.bg-gray-lighter {
+  background: #F9F9F9;
+}
+
+.height-50 {
+  height: 50%;
+}
+
+.height-70 {
+  height: 70%;
+}
+
 .rotate {
   -webkit-animation-name: rotation;
           animation-name: rotation;
@@ -22242,11 +22270,6 @@ video {
   to {
     transform: rotate(360deg);
   }
-}
-
-.blue {
-  background-color: blue;
-  padding: 3rem;
 }
 
 @media (min-width: 640px) {
@@ -108484,3 +108507,5 @@ video {
             animation: bounce 1s infinite;
   }
 }
+
+
