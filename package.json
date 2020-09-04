@@ -1,0 +1,19 @@
+{
+  "name": "spin-the-wheel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwind build src/style.css -o dist/style.css"
+  },
+  "keywords": [],
+  "author": "Talea Dehne",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^1.7.6",
+    "uniq": "^1.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.2"
+  }
+}
