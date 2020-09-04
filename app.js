@@ -1,38 +1,27 @@
-/*const app = require('./app.js')
-//console.log(app.loadFile())
-
-
-const allRecipeIngredients = []
-
-function getIngrediets(recipes){
+/*function getIngrediets(recipes){
     recipes.forEach(element => {
         allRecipeIngredients.push(element.content.ingredients);
         console.log(allRecipeIngredients)
         return;
     });
 }
-getIngrediets(app.loadFile())*/
+getIngrediets(recipes)*/
 
-//import recipes from "./recipes.json";
+//import recipes from "./recipes.js
 
 const vue = new Vue({
 	el: "#app",
 	data: {
-		rotate: false,
+        start: false,
+        rotate: false,
+        attachRed: true,
 		showIngredients: true,
-		ingredients: [
-			["some", "more", "ingredients"],
-			["other", "ingredients"],
-			["zaza", "yaay", "lol"]
-		],
-		methods: [
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque voluptatem maiores architecto quos illo ipsum perspiciatis quis, nesciunt tempora provident iste consequuntur mollitia? Quidem asperiores maiores ipsam temporibus expedita doloribus.",
-			"Some Other text",
-			"text3"
-		],
 		specifiedIngredients: [],
-		specifiedMethod: "",
-		spinCounter: 0
+        specifiedInstructions: [],
+        recipename: '',
+        servings:'',
+        spinCounter: 0,
+        recipes: recipes,
 	},
 	watch: {
 		spinCounter: function (value) {
@@ -42,20 +31,24 @@ const vue = new Vue({
 				vm.spinCounter = 0;
 			}
 		}
-	},
+    },
 	methods: {
 		getIndex: function () {
-			return Math.floor(Math.random() * 3);
+            const num_recipes = this.recipes.length
+			return Math.floor(Math.random() * num_recipes);
 		},
 		getContent: function () {
 			this.specifiedIngredients = [];
 			this.specifiedMethod = "";
-			console.log(this.specifiedIngredients);
 			const index = this.getIndex();
-			this.specifiedIngredients = this.specifiedIngredients.concat(
-				this.ingredients[index]
-			);
-			this.specifiedMethod = this.specifiedMethod.concat(this.methods[index]);
+			/*this.specifiedIngredients = this.specifiedIngredients.concat(
+                this.ingredients[index]
+                this.specifiedMethod.concat(this.methods[index]);
+			);*/
+            this.specifiedInstructions = this.recipes[index].content.instruction
+            this.specifiedIngredients = this.recipes[index].content.ingredients
+            this.recipename = this.recipes[index].name
+            this.servings = 'Serves: ' + this.recipes[index].servings
 		},
 		addCounter: function () {
 			const vm = this;
@@ -63,6 +56,15 @@ const vue = new Vue({
 				vm.spinCounter += 1;
 				console.log(vm.spinCounter);
 			}, 1000);
-		}
-	}
+        },
+        init: function () {
+            const vm = this;
+            setTimeout(function () {
+                vm.start = true;
+            },30);
+        }
+    },
+    mounted(){
+        this.init();
+    }
 });
