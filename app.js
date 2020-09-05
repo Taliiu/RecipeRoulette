@@ -4,7 +4,7 @@ const vue = new Vue({
         start: false,
         isOpen: false,
         rotate: false,
-        attachRed: true,
+        attachPurple: true,
 		showIngredients: true,
 		specifiedIngredients: [],
         specifiedInstructions: [],
