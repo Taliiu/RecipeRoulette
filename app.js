@@ -1,18 +1,8 @@
-/*function getIngrediets(recipes){
-    recipes.forEach(element => {
-        allRecipeIngredients.push(element.content.ingredients);
-        console.log(allRecipeIngredients)
-        return;
-    });
-}
-getIngrediets(recipes)*/
-
-//import recipes from "./recipes.js
-
 const vue = new Vue({
 	el: "#app",
 	data: {
         start: false,
+        isOpen: false,
         rotate: false,
         attachRed: true,
 		showIngredients: true,
@@ -22,6 +12,8 @@ const vue = new Vue({
         servings:'',
         spinCounter: 0,
         recipes: recipes,
+        chosenCategory: 'default',
+        filteredRecipes: [],
 	},
 	watch: {
 		spinCounter: function (value) {
@@ -34,22 +26,46 @@ const vue = new Vue({
     },
 	methods: {
 		getIndex: function () {
-            const num_recipes = this.recipes.length
+            const num_recipes = this.filteredRecipes.length
 			return Math.floor(Math.random() * num_recipes);
 		},
 		getContent: function () {
 			this.specifiedIngredients = [];
 			this.specifiedMethod = "";
-			const index = this.getIndex();
+            const index = this.getIndex();
+            console.log(this.filteredRecipes)
+            console.log(index)
 			/*this.specifiedIngredients = this.specifiedIngredients.concat(
                 this.ingredients[index]
                 this.specifiedMethod.concat(this.methods[index]);
 			);*/
-            this.specifiedInstructions = this.recipes[index].content.instruction
-            this.specifiedIngredients = this.recipes[index].content.ingredients
-            this.recipename = this.recipes[index].name
-            this.servings = 'Serves: ' + this.recipes[index].servings
-		},
+            this.specifiedInstructions = this.filteredRecipes[index].content.instruction
+            this.specifiedIngredients = this.filteredRecipes[index].content.ingredients
+            this.recipename = this.filteredRecipes[index].name
+            this.servings = 'Serves: ' + this.filteredRecipes[index].servings
+        },
+        filterRecipes: function() {
+            this.filteredRecipes = [];
+            for(let i = 0; i < this.recipes.length; i++){
+                if(this.recipes[i].category == this.chosenCategory){
+                    this.filteredRecipes.push(this.recipes[i])
+                } else if(this.chosenCategory == 'None') {
+                    this.filteredRecipes.push(this.recipes[i])
+                } else if(this.chosenCategory == 'default') {
+                    this.filteredRecipes.push(this.recipes[i])
+                }
+            }
+            
+            console.log(this.filteredRecipes)
+            
+        },
+        selectCategory: function(id){
+            var category = document.getElementById(id).innerHTML
+            document.getElementById('category').innerHTML = category;
+            this.chosenCategory = document.getElementById('category').innerHTML;
+            this.isOpen = false;
+            
+        },
 		addCounter: function () {
 			const vm = this;
 			setTimeout(function () {
@@ -61,7 +77,7 @@ const vue = new Vue({
             const vm = this;
             setTimeout(function () {
                 vm.start = true;
-            },30);
+            },30000);
         }
     },
     mounted(){
