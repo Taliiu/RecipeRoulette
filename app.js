@@ -35,10 +35,7 @@ const vue = new Vue({
             const index = this.getIndex();
             console.log(this.filteredRecipes)
             console.log(index)
-			/*this.specifiedIngredients = this.specifiedIngredients.concat(
-                this.ingredients[index]
-                this.specifiedMethod.concat(this.methods[index]);
-			);*/
+			
             this.specifiedInstructions = this.filteredRecipes[index].content.instruction
             this.specifiedIngredients = this.filteredRecipes[index].content.ingredients
             this.recipename = this.filteredRecipes[index].name
@@ -49,7 +46,7 @@ const vue = new Vue({
             for(let i = 0; i < this.recipes.length; i++){
                 if(this.recipes[i].category == this.chosenCategory){
                     this.filteredRecipes.push(this.recipes[i])
-                } else if(this.chosenCategory == 'None') {
+                } else if(this.chosenCategory == 'none') {
                     this.filteredRecipes.push(this.recipes[i])
                 } else if(this.chosenCategory == 'default') {
                     this.filteredRecipes.push(this.recipes[i])
