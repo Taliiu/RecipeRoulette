@@ -1,6 +1,6 @@
 Vue.component("wheel", {
 	template: `
-		<svg :class="{rotate: rotate}" width="250" height="250">
+		<svg :class="{rotate: rotate}" viewBox="0 0 250 250" width="30vw" height="30vw">
 			<path
 				d="M68.43, 181.567 L125, 125 L125, 205
 			Q89,204 68.43,181.567"
